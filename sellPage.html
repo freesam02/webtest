@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sellPage.css" th:href="@{/src/css/sellPage.css}">
     <link rel="stylesheet" href="../css/topBar.css" th:href="@{/src/css/topBar.css}">
@@ -117,35 +117,11 @@
     </footer>
 
     <script type="text/javascript">
-        function onSubmitImage() {
+        $("#upload").click(function () {
             var form = new FormData();
-            // const file_name = document.getElementById("choosePic").value;
-            // console.log(file_name);
-            // form.append("image", file_name);
-            form.append("image", "C:/~~");
-
-            var settings = {
-                "url": "https://api.imgur.com/3/upload",
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                    "Authorization": "Bearer 5eeae49394cd929e299785c8805bd168fc675280",
-                },
-                "processData": false,
-                "mimeType": "multipart/form-data",
-                "contentType": false,
-                "data": form
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-            });
-
-        }
-
-        $(document).ready(function () {
-            var form = new FormData();
-            form.append("image", "/C:/apple.jpg");
+            const file_name = document.getElementById("choosePic").files[0];
+            console.log(file_name);
+            form.append("image", file_name);
 
             var settings = {
                 "url": "https://api.imgur.com/3/upload",
@@ -160,11 +136,11 @@
                 "data": form
             };
 
-            $("#upload").click(function () {
+
                 $.ajax(settings).done(function (response) {
                     console.log(response);
                 });
-            });
+
         });
     </script>
 </body>
